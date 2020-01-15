@@ -169,7 +169,7 @@ public abstract class AbstractHttpExecutor implements HttpExecutor {
 
     private String initGetUrl(GetContextBase getContext) {
 
-        String host = getContext.getHost();
+               String host = getContext.getHost();
         String path = getContext.getPath();
 
         if (getContext.getParamMap() == null || getContext.getParamMap().isEmpty()) {
@@ -183,7 +183,7 @@ public abstract class AbstractHttpExecutor implements HttpExecutor {
             builder.queryParam(o.getKey(), new Object[]{o.getValue()});
         });
 
-        return builder.build().getPath();
+        return builder.build().toUriString();
 
     }
 
