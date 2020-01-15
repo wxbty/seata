@@ -13,9 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package io.seata.integration.http;
+package io.seata.integration.http.spring;
 
 import io.seata.core.context.RootContext;
+import io.seata.integration.http.XidResource;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
 

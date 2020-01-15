@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import io.seata.core.context.RootContext;
+import io.seata.integration.http.executor.DefaultHttpExecutor;
 import org.apache.http.HttpResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,13 +33,13 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.Map;
 
-import static io.seata.integration.http.AbstractHttpExecutor.convertParamOfBean;
-import static io.seata.integration.http.AbstractHttpExecutor.convertParamOfJsonString;
+import static io.seata.integration.http.executor.AbstractHttpExecutor.convertParamOfBean;
+import static io.seata.integration.http.executor.AbstractHttpExecutor.convertParamOfJsonString;
 
 /**
  * @author wangxb
  */
-class HttpTest {
+public class HttpTest {
 
     private static final String host = "http://127.0.0.1:8081";
     private static final String getPath = "/index";

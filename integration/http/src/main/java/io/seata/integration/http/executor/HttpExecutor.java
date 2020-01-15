@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package io.seata.integration.http;
+package io.seata.integration.http.executor;
 
 import java.io.IOException;
 import java.util.Map;
@@ -25,14 +25,16 @@ import java.util.Map;
  */
 public interface HttpExecutor {
 
-    <T, K> K executePost(String host, String path, T paramObject, Class<K> returnType) throws IOException;
-
-
     /**
      * get method only support param type of Map<String,String>
      *
      * @return K
      */
+    <K> K executeGet(String host, String path, Class<K> returnType) throws IOException;
+
+
     <K> K executeGet(String host, String path, Map<String, String> paramObject, Class<K> returnType) throws IOException;
+
+    <T, K> K executePost(String host, String path, T paramObject, Class<K> returnType) throws IOException;
 
 }

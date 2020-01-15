@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package io.seata.integration.http;
+package io.seata.integration.http.spring;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;

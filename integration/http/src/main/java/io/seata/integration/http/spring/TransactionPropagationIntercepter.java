@@ -13,9 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package io.seata.integration.http;
+package io.seata.integration.http.spring;
 
 import io.seata.core.context.RootContext;
+import io.seata.integration.http.XidResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,7 +42,7 @@ public class TransactionPropagationIntercepter extends HandlerInterceptorAdapter
         String rpcXid = request.getHeader(RootContext.KEY_XID);
 
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("xid in RootContext[" + xid + "] xid in HttpContext[" + rpcXid + "]");
+            LOGGER.debug("xid in RootContext[" + xid + "] xid in BaseHttpContext[" + rpcXid + "]");
         }
         if (rpcXid != null) {
             RootContext.bind(rpcXid);
