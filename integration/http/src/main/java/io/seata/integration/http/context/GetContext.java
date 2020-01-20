@@ -22,11 +22,11 @@ import java.util.Map;
  *
  * @author wangxb
  */
-public class GetContextBase extends BaseHttpContext {
+public class GetContext extends BaseHttpContext {
 
     private Map<String, String> paramMap;
 
-    private GetContextBase(Builder builder) {
+    private GetContext(Builder builder) {
         super(builder.host, builder.path);
         this.paramMap = builder.paramMap;
     }
@@ -53,14 +53,14 @@ public class GetContextBase extends BaseHttpContext {
             return this;
         }
 
-        public GetContextBase build() {
-            return new GetContextBase(this);
+        public GetContext build() {
+            return new GetContext(this);
         }
     }
 
     @Override
     public String toString() {
-        return "GetContextBase{" +
+        return "GetContext{" +
                 "host='" + host + '\'' +
                 ", path='" + path + '\'' +
                 ", paramMap=" + paramMap +

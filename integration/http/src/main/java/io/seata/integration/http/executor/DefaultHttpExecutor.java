@@ -17,8 +17,8 @@ package io.seata.integration.http.executor;
 
 import com.google.common.collect.Maps;
 import io.seata.integration.http.context.BaseHttpContext;
-import io.seata.integration.http.context.GetContextBase;
-import io.seata.integration.http.context.PostContextBase;
+import io.seata.integration.http.context.GetContext;
+import io.seata.integration.http.context.PostContext;
 import org.apache.http.HttpResponse;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -48,20 +48,20 @@ public class DefaultHttpExecutor extends AbstractHttpExecutor {
     }
 
     @Override
-    public Map<String, String> buildGetCustomizeHeaders(Map<String, String> headers, GetContextBase getContext) {
+    public Map<String, String> buildGetCustomizeHeaders(Map<String, String> headers, GetContext getContext) {
 
         return headers;
     }
 
 
     @Override
-    protected <T> Map<String, String> buildPostCustomizeHeaders(PostContextBase<T> postContext) {
+    protected <T> Map<String, String> buildPostCustomizeHeaders(PostContext<T> postContext) {
         return Maps.newHashMap();
     }
 
 
     @Override
-    public StringEntity buildPostEntity(StringEntity entity, PostContextBase postContext) {
+    public StringEntity buildPostEntity(StringEntity entity, PostContext postContext) {
         return entity;
     }
 

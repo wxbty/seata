@@ -23,8 +23,8 @@ import com.google.common.collect.Maps;
 import io.seata.core.context.RootContext;
 import io.seata.integration.http.HttpUriRequestFactory;
 import io.seata.integration.http.context.BaseHttpContext;
-import io.seata.integration.http.context.GetContextBase;
-import io.seata.integration.http.context.PostContextBase;
+import io.seata.integration.http.context.GetContext;
+import io.seata.integration.http.context.PostContext;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -67,7 +67,7 @@ public abstract class AbstractHttpExecutor implements HttpExecutor {
         Args.notNull(host, "host");
         Args.notNull(path, "path");
 
-        GetContextBase getContext = new GetContextBase.Builder(host, path).param(paramMap).build();
+        GetContext getContext = new GetContext.Builder(host, path).param(paramMap).build();
 
         CloseableHttpClient httpClient = initClientInstance(getContext);
         return wrapHttpExecute(returnType, httpClient, HttpUriRequestFactory.createHttpUriRequest("get", initGetUrl(getContext)), buildGetCustomizeHeaders(setGlobalTransactionXidToHead(), getContext));
@@ -80,7 +80,7 @@ public abstract class AbstractHttpExecutor implements HttpExecutor {
         Args.notNull(host, "host");
         Args.notNull(path, "path");
 
-        PostContextBase<T> postContext = new PostContextBase<>(host, path);
+        PostContext<T> postContext = new PostContext<>(host, path);
         postContext.setParam(param);
 
         /**
@@ -99,7 +99,7 @@ public abstract class AbstractHttpExecutor implements HttpExecutor {
         return wrapHttpExecute(returnType, httpClient, httpPost, headers);
     }
 
-    private <T> StringEntity getStringEntity(PostContextBase<T> postContext) {
+    private <T> StringEntity getStringEntity(PostContext<T> postContext) {
 
         T param = postContext.getParam();
         StringEntity entity = null;
@@ -165,11 +165,11 @@ public abstract class AbstractHttpExecutor implements HttpExecutor {
         return convertResult(response, returnType);
     }
 
-    protected abstract Map<String, String> buildGetCustomizeHeaders(Map<String, String> headers, GetContextBase getContext);
+    protected abstract Map<String, String> buildGetCustomizeHeaders(Map<String, String> headers, GetContext getContext);
 
-    private String initGetUrl(GetContextBase getContext) {
+    private String initGetUrl(GetContext getContext) {
 
-               String host = getContext.getHost();
+        String host = getContext.getHost();
         String path = getContext.getPath();
 
         if (getContext.getParamMap() == null || getContext.getParamMap().isEmpty()) {
@@ -202,9 +202,9 @@ public abstract class AbstractHttpExecutor implements HttpExecutor {
     }
 
 
-    protected abstract <T> Map<String, String> buildPostCustomizeHeaders(PostContextBase<T> postContext);
+    protected abstract <T> Map<String, String> buildPostCustomizeHeaders(PostContext<T> postContext);
 
-    protected abstract <T> StringEntity buildPostEntity(StringEntity entity, PostContextBase<T> postContext);
+    protected abstract <T> StringEntity buildPostEntity(StringEntity entity, PostContext<T> postContext);
 
     protected abstract <K> K convertResult(HttpResponse response, Class<K> clazz);
 

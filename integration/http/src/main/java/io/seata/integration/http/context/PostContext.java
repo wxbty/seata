@@ -20,11 +20,11 @@ package io.seata.integration.http.context;
  *
  * @author wangxb
  */
-public class PostContextBase<T> extends BaseHttpContext {
+public class PostContext<T> extends BaseHttpContext {
 
     private T param;
 
-    public PostContextBase(String host, String path) {
+    public PostContext(String host, String path) {
         super(host, path);
     }
 
@@ -39,7 +39,7 @@ public class PostContextBase<T> extends BaseHttpContext {
 
     @Override
     public String toString() {
-        return "PostContextBase{" +
+        return "PostContext{" +
                 "param=" + param +
                 ", host='" + host + '\'' +
                 ", path='" + path + '\'' +
